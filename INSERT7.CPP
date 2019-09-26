@@ -10,6 +10,7 @@ struct node*next;
 }*ptr,*head,*tail,*temp;         //pointer to node
 
 void insert_beg();
+void insert_pos();
 void insert_end();               //function declaration
 void display();
 int item;
@@ -18,7 +19,7 @@ int main()                       //main starts here
 {int ch;
 clrscr();
 do{
-cout<<"1.insert at end\n2.insert_beg\n3.display\n4.exit"<<endl;
+cout<<"1.insert at end\n2.insert_beg\n3.insert_pos\n4.display\n5.exit"<<endl;
 cout<<"enter yout choise"<<endl;
 cin >>ch;
   switch(ch)
@@ -30,9 +31,12 @@ cin >>ch;
   insert_beg();
   break;
   case 3:
-  display();
+  insert_pos();
   break;
   case 4:
+  display();
+  break;
+  case 5:
   exit(0);
   break;
   }
@@ -79,6 +83,26 @@ else
   head=ptr;
  }
 }
+
+void insert_pos()
+{
+clrscr();
+int i,loc;
+ptr=(struct node*)malloc(sizeof(struct node));
+cout<<"enter the item"<<endl;
+cin>>item;
+ptr->data=item;
+cout<<"enter the location"<<endl;
+cin>>loc;
+temp=head;
+for(i=1;i<loc-1;i++)
+ {
+  temp=temp->next;
+  ptr->next=temp->next;
+  temp->next=ptr;
+ }
+}
+
 
 void display()                   //definition of display function
 { clrscr();
